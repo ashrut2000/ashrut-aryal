@@ -1,0 +1,924 @@
+/* styles.css (your full file with updated Approach Overview + schematic + small tweaks) */
+:root{
+  --bg:#0b0c10;
+  --card:#11131a;
+  --text:#e9ecf1;
+  --muted:#c3cbd6;
+  --border:rgba(255,255,255,0.10);
+  --accent:#7aa2ff;
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(122,162,255,0.18), transparent 60%),
+              radial-gradient(900px 500px at 90% 20%, rgba(120,255,200,0.10), transparent 55%),
+              var(--bg);
+  color:var(--text);
+}
+
+a{color:inherit; text-decoration:none}
+code{color:var(--accent)}
+
+.container{max-width:1050px; margin:0 auto; padding:0 18px}
+.page{min-height:100%; display:flex; flex-direction:column}
+.main{padding:28px 0 48px}
+.stack{display:flex; flex-direction:column; gap:22px}
+
+.header{
+  position:sticky; top:0; z-index:10;
+  backdrop-filter: blur(10px);
+  background: rgba(11,12,16,0.65);
+  border-bottom:2px solid var(--border);
+}
+.headerInner{display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:16px}
+
+.brand{display:flex; align-items:center; gap:12px}
+.avatar{width:44px; height:44px; border-radius:14px; object-fit:cover; border:1px solid var(--border)}
+.name{font-weight:650; letter-spacing:0.2px}
+.subtitle{font-size:13px; color:var(--muted)}
+
+.nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+.navLink{font-size:14px; color:var(--muted)}
+.navLink:hover{color:var(--text)}
+
+.hero h1{font-size:25px; margin:0; line-height:1.1}
+.lede{color:var(--muted); font-size:16px; margin:0; max-width:70ch}
+
+.actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:6px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 14px; border-radius:12px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color:var(--text);
+}
+.btn:hover{border-color:rgba(255,255,255,0.18)}
+.btn.primary{
+  background: linear-gradient(180deg, rgba(122,162,255,0.22), rgba(122,162,255,0.10));
+  border-color: rgba(122,162,255,0.35);
+}
+
+.chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+.chip{
+  font-size:13px; color:var(--muted);
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  padding:7px 10px; border-radius:999px;
+}
+
+.sectionHeader h2{margin:0}
+.sectionHeader p{margin:6px 0 0; color:var(--muted)}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:14px;
+}
+@media (max-width: 950px){ .grid{grid-template-columns: repeat(2, minmax(0, 1fr));} }
+@media (max-width: 620px){ .grid{grid-template-columns: 1fr;} }
+
+.card{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius);
+  overflow:hidden;
+  transition: transform .12s ease, border-color .12s ease;
+}
+.card:hover{transform: translateY(-2px); border-color: rgba(255,255,255,0.18);}
+
+.thumb{aspect-ratio: 16/9; background: rgba(255,255,255,0.03)}
+.thumb img, .thumb video{width:100%; height:100%; object-fit:cover; display:block}
+
+.cardBody{padding:14px}
+.cardTitle{font-weight:650; margin-bottom:6px}
+.cardSummary{color:var(--muted); font-size:14px; line-height:1.45}
+
+.tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.tag{
+  font-size:12px; color:var(--muted);
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  padding:5px 8px; border-radius:999px;
+}
+
+.pubList{display:flex; flex-direction:column; gap:14px}
+.pub{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius);
+  padding:14px;
+}
+.pubTitle{font-weight:650}
+.pubMeta{color:var(--muted); margin-top:4px; font-size:14px}
+.pubLinks{display:flex; gap:12px; margin-top:10px; flex-wrap:wrap}
+.pubLinks a{color:var(--accent)}
+
+.projectHeader h1{margin:0}
+.heroMedia video, .heroMedia img{
+  width:100%; border-radius: var(--radius);
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.caption{color:var(--muted); font-size:13px; margin-top:8px}
+
+.twoCol{
+  display:grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap:14px;
+}
+@media (max-width: 900px){ .twoCol{grid-template-columns: 1fr;} }
+
+.panel{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius);
+  padding:14px;
+}
+.panel h2, .panel h3{margin:0 0 10px}
+.panel ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.6}
+
+.kv{list-style:none; padding-left:0}
+.kv .k{display:block; color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:0.06em}
+.kv .v{display:block; margin-top:2px}
+
+.linkList{display:flex; flex-direction:column; gap:8px}
+.linkList a{color:var(--accent)}
+
+.gallery{display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:14px}
+@media (max-width: 700px){ .gallery{grid-template-columns: 1fr;} }
+.figure img{
+  width:100%; border-radius: var(--radius);
+  border:1px solid var(--border);
+}
+.figure figcaption{color:var(--muted); font-size:13px; margin-top:8px}
+
+.footer{
+  margin-top:auto;
+  border-top:1px solid var(--border);
+  background: rgba(11,12,16,0.45);
+}
+.footerInner{
+  padding:18px 0;
+  display:flex; gap:10px; flex-wrap:wrap;
+  color:var(--muted);
+}
+.footerInner a{color:var(--text)}
+
+/* ---- HERO bio + headshot layout ---- */
+.heroTop{
+  display:grid;
+  grid-template-columns: 150px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+img.heroPhoto{
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+  object-fit: cover;
+  display:block;
+  border: 1px solid rgba(122,162,255,0.35);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,0.42),
+    0 0 0 6px rgba(122,162,255,0.08);
+}
+.heroPhoto{ filter: brightness(0.92) contrast(1.05) saturate(0.92); }
+
+/* Bio as 2 paragraphs */
+.lede{
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 70ch;
+}
+.lede p{ margin: 0; }
+.lede p + p{ margin-top: 10px; }
+.lede strong{ color: var(--text); font-weight: 650; }
+
+.btn.ghost{ background: transparent; border-color: rgba(255,255,255,0.14); }
+.btn.ghost:hover{ border-color: rgba(122,162,255,0.40); }
+
+.inlineLink{ color: var(--accent); text-decoration: none; }
+.inlineLink:hover{ text-decoration: underline; }
+
+@media (max-width: 700px){
+  .heroTop{ grid-template-columns: 1fr; }
+  img.heroPhoto{ width: 112px; height: 112px; }
+}
+
+/* ---- Skills section ---- */
+.skillsGrid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:14px;
+}
+@media (max-width: 700px){ .skillsGrid{ grid-template-columns: 1fr; } }
+
+.skillCard{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius);
+  padding:14px;
+}
+.skillTitle{ font-weight:650; margin-bottom:10px; }
+.skillList{
+  margin:0;
+  padding-left:18px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* Mobile hero layout */
+@media (max-width: 700px){
+  .heroTop{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 14px;
+  }
+  .heroPhoto{ width: 140px; height: 140px; margin: 0 auto; }
+  .heroText h1{ text-align: center; margin-top: 2px; }
+  .heroText{ width: 100%; text-align: left; }
+  .lede{
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+  .lede p { margin: 0 0 10px; }
+  .lede p:last-child { margin-bottom: 0; }
+  .actions{ justify-content: flex-start; }
+}
+
+/* ===== HI-ARCF custom page ===== */
+.wrinklePage{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.wrinkleHero{ margin-top:6px; }
+.wrinkleHeroVideo{
+  width:100%;
+  border-radius: var(--radius);
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+
+.wrinkleCaption{ color: var(--muted); font-size: 13px; margin-top: 8px; }
+
+.wrinkleHeader{ margin-top: 6px; }
+.wrinkleTitle{ margin:0; font-size: 38px; line-height:1.08; letter-spacing: .2px; }
+
+.wrinkleProblem p{
+  margin: 0;
+  color: var(--text);
+  line-height: 1.75;
+  max-width: 90ch;
+  font-size: 17px;
+  justify-content: right;
+}
+
+.wrinkleRole{
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(122,162,255,0.28);
+  background: linear-gradient(180deg, rgba(122,162,255,0.10), rgba(255,255,255,0.02));
+  max-width: 90ch;
+}
+.wrinkleRoleK{
+  font-weight: 750;
+  color: var(--text);
+}
+.wrinkleRoleV{
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.wrinkleH2{
+  margin: 0 0 10px;
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.wrinkleH3{
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: .18px;
+}
+
+.wrinkleP{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 92ch;
+  font-size: 15.5px;
+}
+
+.wrinkleNote{
+  margin: 10px 0 0;
+  color: rgba(169,177,189,0.85);
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 92ch;
+}
+
+.wrinkleSplit{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 900px){
+  .wrinkleSplit{ grid-template-columns: 1fr; }
+}
+
+.wrinkleFull{ display:flex; flex-direction:column; gap:10px; }
+
+.wrinkleSubblock{
+  margin-top: 10px;
+  padding-top: 4px;
+}
+
+/* Base: figure uses a variable width */
+.wrinkleFigure{
+  --fig-w: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+/* Image + caption both follow width */
+.wrinkleFigure.paper img{ width: var(--fig-w); height: auto; display:block; }
+.wrinkleFigcap{ width: var(--fig-w);
+font-size: 13px;
+color: rgba(255,255,255,0.78);}
+
+/* Width presets */
+.fig70{ --fig-w: 70%; }
+.fig75{ --fig-w: 100%;
+margin-left: 150px; }
+.fig80{ --fig-w: 80%; }
+.fig90{ --fig-w: 90%; }
+.fig95{ --fig-w: 95%; }
+.fig100{ --fig-w: 100%; }
+
+/* Caption alignment presets */
+.capLeft{ align-items: flex-start; }   /* figure aligns left */
+.capLeft .wrinkleFigcap{ text-align: left; }
+
+.capCenter{ align-items: center; }     /* figure centers block */
+.capCenter .wrinkleFigcap{ text-align: center; }
+
+
+/* Only for the diagrams where centered caption looks better */
+.figCenterCap .wrinkleFigcap{
+  text-align: center;
+}
+
+/* Make the figure a clean vertical stack */
+/* Figure is a vertical stack and uses a single width variable */
+
+/* helps scroll-to not hide under sticky header */
+.wrinklePage section[id]{ scroll-margin-top: 90px; }
+
+/* ===== Approach Overview (2x2 flowchart with correct arrows + readable text) ===== */
+.approachNav{
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.approachNavTitle{
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 750;
+  color: var(--text);
+}
+
+.flowchartGrid{
+  display:grid;
+  grid-template-columns: minmax(360px, 1fr) 92px minmax(360px, 1fr);
+  grid-template-rows: auto 86px auto;
+  grid-template-areas:
+    "n1 a12 n2"
+    ".  .  a23"
+    "n4 a34 n3";
+  align-items: stretch;
+}
+
+.flowNode{
+  width: 100%;
+  min-height: 126px;
+  padding: 22px 22px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.14);
+
+  /* high contrast inside the cards */
+  background:
+    radial-gradient(900px 260px at 25% 10%, rgba(122,162,255,0.14), transparent 60%),
+    linear-gradient(180deg, rgba(15,18,26,0.92), rgba(10,12,18,0.78));
+  box-shadow:
+    0 18px 44px rgba(0,0,0,0.58),
+    0 1px 0 rgba(255,255,255,0.07) inset;
+
+  text-align: left;
+  cursor: pointer;
+  transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+
+.flowNode:hover{
+  transform: translateY(-3px);
+  border-color: rgba(122,162,255,0.55);
+  box-shadow:
+    0 22px 54px rgba(0,0,0,0.64),
+    0 1px 0 rgba(255,255,255,0.08) inset,
+    0 0 0 7px rgba(122,162,255,0.09);
+}
+
+.flowNode:focus-visible{
+  outline: none;
+  border-color: rgba(122,162,255,0.65);
+  box-shadow:
+    0 22px 54px rgba(0,0,0,0.64),
+    0 0 0 5px rgba(122,162,255,0.22);
+}
+
+.flowNodeTop{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom: 8px;
+}
+
+.flowNum{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+
+  background: rgba(122,162,255,0.22);
+  border: 1px solid rgba(122,162,255,0.40);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.32);
+}
+
+.flowTitle{
+  color: var(--text);
+}
+
+.flowSub{
+  /* brighter than --muted, but still “secondary” */
+  color: rgba(233,236,241,0.82);   /* was var(--muted) */
+  font-size: 14px;                 /* was 13px */
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.35); /* subtle contrast boost */
+}
+
+/* Optional: make the card background a touch lighter to help text contrast */
+.flowNode{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.085),
+    rgba(255,255,255,0.03)
+  );
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Place nodes */
+.flowNode[data-step="1"]{ grid-area: n1; }
+.flowNode[data-step="2"]{ grid-area: n2; }
+.flowNode[data-step="3"]{ grid-area: n3; }
+.flowNode[data-step="4"]{ grid-area: n4; }
+
+/* Arrows live in their own cells (correct placement) */
+.flowArrow{
+  position: relative;
+  display:block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.45));
+}
+
+.flowArrow.arrow12{ grid-area: a12; }
+.flowArrow.arrow23{ grid-area: a23; }
+.flowArrow.arrow34{ grid-area: a34; }
+
+/* arrow 1->2 (right) */
+.flowArrow.arrow12::before{
+  content:"";
+  position:absolute;
+  left: 10px;
+  right: 16px;
+  top: 50%;
+  height: 3px;
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-50%);
+}
+.flowArrow.arrow12::after{
+  content:"";
+  position:absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 16px solid rgba(122,162,255,0.75);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* arrow 2->3 (down) */
+.flowArrow.arrow23::before{
+  content:"";
+  position:absolute;
+  top: 10px;
+  bottom: 16px;
+  left: 50%;
+  width: 3px;
+  background: rgba(255,255,255,0.18);
+  transform: translateX(-50%);
+}
+.flowArrow.arrow23::after{
+  content:"";
+  position:absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 16px solid rgba(122,162,255,0.75);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+/* arrow 3->4 (left) */
+.flowArrow.arrow34::before{
+  content:"";
+  position:absolute;
+  left: 16px;
+  right: 10px;
+  top: 50%;
+  height: 3px;
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-50%);
+}
+.flowArrow.arrow34::after{
+  content:"";
+  position:absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right: 16px solid rgba(122,162,255,0.75);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+@media (max-width: 980px){
+  .flowchartGrid{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 40px auto 40px auto 40px auto;
+    grid-template-areas:
+      "n1"
+      "a12"
+      "n2"
+      "a23"
+      "n3"
+      "a34"
+      "n4";
+  }
+
+  .flowArrow.arrow12::before,
+  .flowArrow.arrow23::before,
+  .flowArrow.arrow34::before{
+    left: 50%;
+    top: 10px;
+    bottom: 16px;
+    right: auto;
+    width: 3px;
+    height: auto;
+    transform: translateX(-50%);
+  }
+
+  .flowArrow.arrow12::after,
+  .flowArrow.arrow23::after,
+  .flowArrow.arrow34::after{
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 6px;
+    transform: translateX(-50%);
+    border-top: 16px solid rgba(122,162,255,0.75);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 0;
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .flowArrow.arrow12::after{ border-left: 10px solid transparent; border-right: 10px solid transparent; }
+  .flowArrow.arrow34::after{ border-left: 10px solid transparent; border-right: 10px solid transparent; }
+}
+
+/* ===== Input/Output schematic ===== */
+.ioGrid{
+  margin-top: 12px;
+  display:grid;
+  grid-template-columns: 1fr 160px 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.ioCard{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  box-shadow: 0 16px 40px rgba(0,0,0,0.52);
+  padding: 16px 16px 14px;
+}
+
+.ioTitle{
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 10px;
+  letter-spacing: .2px;
+}
+
+.ioList{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(233,236,241,0.82);
+  line-height: 1.6;
+}
+
+.ioLabel{
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(169,177,189,0.95);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.ioMid{
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ioMidText{
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(233,236,241,0.9);
+  font-weight: 750;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(122,162,255,0.18);
+  border: 1px solid rgba(122,162,255,0.28);
+}
+
+.ioArrowLine{
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+
+.ioArrowHead{
+  position:absolute;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border-left: 16px solid rgba(122,162,255,0.75);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+@media (max-width: 900px){
+  .ioGrid{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 56px auto;
+  }
+
+  .ioMid{
+    height: 56px;
+  }
+
+  .ioArrowLine{
+    width: 3px;
+    height: 100%;
+  }
+
+  .ioArrowHead{
+    right: auto;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 16px solid rgba(122,162,255,0.75);
+    border-bottom: 0;
+  }
+
+  .ioMidText{
+    top: 14px;
+    transform: none;
+  }
+}
+
+/* Publications in wrinkle page */
+.wrinklePubList{
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+.wrinklePub{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius);
+  padding: 14px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.wrinklePubText{
+  color: rgba(233,236,241,0.88);
+  line-height: 1.6;
+}
+
+.wrinklePubVenue{ color: var(--text); font-weight: 700; }
+.wrinklePubNote{ color: var(--muted); }
+
+.wrinklePubLinks{ display:flex; gap: 10px; }
+.wrinklePubLink{
+  color: var(--accent);
+  border: 1px solid rgba(122,162,255,0.28);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(122,162,255,0.10);
+}
+.wrinklePubLink:hover{ border-color: rgba(122,162,255,0.45); }
+.ytWrap{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.ytFrame{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Center the figure and let content define size */
+.wrinkleFigure.algFigure{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+/* Scale image relative to its intrinsic size */
+.wrinkleFigure.algFigure img{
+  width: 50%;            /* <-- change this: 70%, 75%, 80%, 85% */
+  height: auto;          /* preserves aspect ratio */
+  display: block;
+
+  border-radius: var(--radius);
+  background: #fff;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,0.58),
+    0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+/* Caption wraps exactly to the image width */
+.wrinkleFigure.algFigure .wrinkleFigcap{
+  width: 80%;            /* MUST match image width */
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+
+/* keep end-effector untouched (no rules for it) */
+
+/* ===== BoMI custom page ===== */
+.bomiPage{ display:flex; flex-direction:column; gap:18px; }
+.bomiHero{ margin-top:6px; }
+
+.bomiHeader{ margin-top: 6px; }
+.bomiTitleRow{ display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap; }
+.bomiTitle{ margin:0; font-size: 34px; line-height:1.12; }
+
+.bomiBadge{
+  font-size:12px;
+  color:#eaf0ff;
+  border:1px solid rgba(122,162,255,0.35);
+  background: rgba(122,162,255,0.14);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+.bomiProblem .bomiP{
+  margin:0;
+  line-height:1.75;
+  max-width: 90ch;
+  color: rgba(255,255,255,0.90); /* slightly brighter than your muted */
+}
+
+.bomiRole{
+  margin-top:12px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+}
+.bomiRoleK{ font-weight: 650; color:#fff; }
+.bomiRoleV{ color: rgba(255,255,255,0.90); }
+
+.bomiH2{ margin: 0 0 10px; font-size: 18px; letter-spacing:.2px; }
+.bomiP{ margin:0; color: rgba(255,255,255,0.88); line-height:1.75; max-width:90ch; }
+
+.bomiBullets{
+  margin: 8px 0 0;
+  padding-left: 18px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.88);
+}
+.bomiBullets strong{ color:#fff; font-weight:650; }
+
+.bomiSplit{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 900px){ .bomiSplit{ grid-template-columns: 1fr; } }
+
+.bomiFull{ display:flex; flex-direction:column; gap:10px; }
+
+/* show schematic cleanly (no gray padding box) */
+.bomiFigure{
+  margin:0;
+}
+.bomiFigure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.45);
+  background: transparent;
+}
+.bomiFigcap{
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
+}
+
+/* scroll-to not hidden under sticky header */
+.bomiPage section[id]{ scroll-margin-top: 90px; }
+
+/* --- Tracking GUI image size control --- */
+.trackingFigureGui{
+  justify-self: end;           /* keeps it tidy on the right column */
+}
+
+.trackingImgGui{
+
+  width: 520px;            /* ✅ adjust this number (480–620 usually looks good) */
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+}
+
+/* On smaller screens, let it expand */
+@media (max-width: 900px){
+  .trackingFigureGui{ justify-self: stretch; }
+  .trackingImgGui{ max-width: 100%; }
+}
+.introduction{
+  justify-content: right;
+}
+.authorMe {
+  font-weight: 650; /* bold-ish */
+}
