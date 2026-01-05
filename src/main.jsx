@@ -6,8 +6,8 @@ import "./styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <BrowserRouter>
+  <App />
+</BrowserRouter>
   </React.StrictMode>
 );
