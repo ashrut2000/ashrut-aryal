@@ -5,7 +5,7 @@ export const projects = [
   slug: "robotic-wrinkle-flattening",
   title: "Human-Inspired Robotic Cloth Manipulation (HI-ARCF)",
   summary: "Modeled human strategies from participant data and deployed a vision-guided manipulation pipeline for wrinkle flattening.",
-  tags: ["Robotics", "Manipulation", "Vision", "Learning from Humans"],
+  tags: ["Robotics", "Manipulation", "Computer Vision", "Learning from Humans"],
   hero: {
     type: "video",
     src: "media/wrinkle-demo.mp4",
@@ -25,7 +25,7 @@ export const projects = [
     title: "Body–Machine Interface for Industrial Sewing Machine Control",
     summary:
       "An alternative control paradigm for industrial sewing machines that replaces pedal-based input with a torso-lean-based body-machine interface. The system includes real-time haptic feedback and aims to improve workplace accessibility for operators with lower-limb impairments.",
-    tags: ["HMI", "Wearables", "Embedded", "Real-time"],
+    tags: ["HMI", "IMU", "Arduino", "Real-time"],
     hero: {
       type: "video",
       src: "media/bomi-demo.mp4",
@@ -55,7 +55,7 @@ export const projects = [
     title: "Real-Time Object Tracking for an Autonomous Service Robot",
     summary:
       "Built navigation + tracking and created multi-sensor data acquisition and a PyQt GUI for visualization/verification.",
-    tags: ["Robotics", "SLAM", "Perception", "PyQt"],
+    tags: ["YOLOV4", "Kalman Filter", "Object Tracking", "PyQt"],
     hero: {
       type: "image",
       src: "media/slam-thumb.jpg",
