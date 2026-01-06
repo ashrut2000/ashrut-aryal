@@ -90,27 +90,31 @@ export default function Home() {
 
           <div className="heroText">
             <h1>Ashrut Aryal</h1>
-
             <div className="lede">
-              <p>
-                I’m a 3rd-year PhD student in Mechanical Engineering at Michigan State University, working in the{" "}
-                <a
-                  className="inlineLink"
-                  href="https://sites.google.com/site/motrelab/home"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  MOTRE Lab
-                </a>
-                .
-              </p>
-              <p>
-                My research focuses on <strong>human–machine interaction</strong> and{" "}
-                <strong>robotic manipulation</strong>, with an emphasis on learning from human behavior and building
-                systems that work reliably in the real world. I’ve worked on human-inspired robotic cloth manipulation
-                and I’m currently developing a body–machine interface to control industrial sewing machines.
-              Before my PhD, I worked as a Robotics and AI Engineer developing perception and tracking systems for autonomous robots </p>
-            </div>
+  <p>
+    I'm a 3rd-year PhD student in Mechanical Engineering at Michigan State University, working in the{" "}
+<a
+  className="inlineLink"
+  href="https://sites.google.com/site/motrelab/home"
+  target="_blank"
+  rel="noreferrer"
+>
+  MOTRE Lab
+</a>
+    .
+  </p>
+  <p>
+    My research focuses on <strong>robotic manipulation</strong> and{" "}
+    <strong>learning from human demonstrations</strong>. I build perception systems and train policies that work
+    reliably on physical robots. My current projects include human-inspired robotic cloth manipulation and a
+    body–machine interface for industrial sewing machine control.
+  </p>
+  <p>
+    Before my PhD, I worked as a Robotics and AI Engineer at the National Innovation Center in Nepal,
+    developing perception and tracking systems for autonomous robots.
+  </p>
+</div>
+
 
 
             <div className="actions">
@@ -134,19 +138,23 @@ export default function Home() {
           {projects.map((p) => (
             <Link key={p.slug} to={`/projects/${p.slug}`} className="card">
               <div className="thumb">
-                {p.hero?.type === "video" ? (
-                  <video
-                    src={`${base}${p.hero.src}`}
-                    poster={p.hero.poster ? `${base}${p.hero.poster}` : undefined}
-                    muted
-                    playsInline
-                    loop
-                    autoPlay
-                  />
-                ) : (
-                  <img src={`${base}${p.hero?.src}`} alt={p.title} />
-                )}
-              </div>
+  {p.hero?.type === "video" ? (
+    <video
+      src={`${base}${p.hero.src}`}
+      poster={p.hero.poster ? `${base}${p.hero.poster}` : undefined}
+      muted
+      playsInline
+      loop
+      autoPlay
+    />
+  ) : p.hero?.type === "youtube" && p.hero?.id ? (
+    // Use your local thumbnail for the card
+    <img src={`${base}${p.image}`} alt={p.title} />
+  ) : (
+    <img src={`${base}${p.hero?.src}`} alt={p.title} />
+  )}
+</div>
+
 
               <div className="cardBody">
                 <div className="cardTitle">{p.title}</div>
@@ -204,7 +212,7 @@ export default function Home() {
       <section className="section">
   <div className="sectionHeader">
     <h2>Skills</h2>
-   
+
   </div>
 
   <div className="skillsGrid">

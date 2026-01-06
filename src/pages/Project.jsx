@@ -171,7 +171,7 @@ function WrinkleProject({ p, base }) {
         <figure className="wrinkleFigure paper fig95 capCenter">
   <img src={`${base}${cvPipelineImg}`} alt="Wrinkle perception pipeline (raw image to extracted wrinkle)" />
   <figcaption className="wrinkleFigcap">
-    Real-time perception pipeline: raw RGB → processed mask → extracted wrinkle geometry.
+    Real-time perception system: raw RGB → processed mask → extracted wrinkle geometry.
   </figcaption>
 </figure>
       </section>
@@ -261,9 +261,143 @@ function WrinkleProject({ p, base }) {
   );
 }
 
-/* ---------------------------
-   CUSTOM PAGE 2: OBJECT TRACKING
----------------------------- */
+function BehaviorCloningProject({ p, base }) {
+  const steps = p?.approachSteps ?? [];
+
+  return (
+    <article className="stack">
+      {/* Header */}
+      <header className="projectHeader">
+        <h1>{p.title}</h1>
+        {p.summary ? <p className="lede">{p.summary}</p> : null}
+
+        {p.tags?.length ? (
+          <div className="tagRow">
+            {p.tags.map((t) => (
+              <span className="tag" key={t}>
+                {t}
+              </span>
+            ))}
+          </div>
+        ) : null}
+      </header>
+
+      {/* Hero (YouTube) */}
+      <section className="heroMedia">
+        {p.hero?.type === "youtube" && p.hero?.id ? (
+  <YouTubeHero id={p.hero.id} autoplay={true} />
+) : null}
+
+        {p.hero?.caption ? <div className="caption">{p.hero.caption}</div> : null}
+      </section>
+
+      {/* Quick overview */}
+      <section className="twoCol">
+        <div className="panel">
+          <h2>What I built</h2>
+          {p.bullets?.length ? (
+            <ul>
+              {p.bullets.map((b, i) => (
+                <li key={i}>{b}</li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+
+        <div className="panel">
+          <h2>Key details</h2>
+          {p.highlights?.length ? (
+            <ul className="kv">
+              {p.highlights.map((h, i) => (
+                <li key={i}>
+                  <span className="k">{h.label}</span>
+                  <span className="v">{h.value}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {p.links?.length ? (
+            <>
+              <h3>Links</h3>
+              <div className="linkList">
+                {p.links.map((l) => (
+                  <a key={l.label} href={l.href} target="_blank" rel="noreferrer">
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </>
+          ) : null}
+        </div>
+      </section>
+
+      {/* Pipeline (same component style as other projects) */}
+      <ApproachOverview steps={steps} />
+
+      {/* Sections that match the 4 pipeline points */}
+      <section id="sim" className="trackingSplit">
+        <div>
+          <h2 className="trackingH2">Simulation Environment</h2>
+          <p className="trackingP">
+            Built a PyBullet simulation featuring a 7-DOF KUKA IIWA arm tasked with reaching a randomly spawned 3D target.
+            Each episode places the target in a new location within the workspace, requiring generalization rather than a
+            memorized trajectory.
+          </p>
+          <p className="trackingP">
+            The environment uses compact observations and joint-velocity actions, with a success radius and a fixed episode
+            timeout to standardize training and evaluation.
+          </p>
+        </div>
+      </section>
+
+      <section id="teleop" className="trackingSplit">
+        <div>
+          <h2 className="trackingH2">Data Collection via Teleoperation</h2>
+          <p className="trackingP">
+            Implemented intuitive Cartesian keyboard control so a user can move the end-effector directly in X/Y/Z instead
+            of coordinating multiple joints manually.
+          </p>
+          <p className="trackingP">
+            End-effector velocity commands are converted into joint velocities using the Jacobian pseudoinverse, and visual
+            feedback helps reduce depth ambiguity when operating in a 3D scene from a 2D display.
+          </p>
+        </div>
+      </section>
+
+      <section id="train" className="trackingSplit">
+        <div>
+          <h2 className="trackingH2">Policy Training via Behavior Cloning</h2>
+          <p className="trackingP">
+            Trained an MLP policy using behavior cloning (supervised learning on state–action pairs). The model learns to
+            predict joint-velocity actions given the current observation.
+          </p>
+          <p className="trackingP">
+            Focused on clean, direct demonstrations to improve imitation quality and allow fast iteration with CPU-only
+            training.
+          </p>
+        </div>
+      </section>
+
+      <section id="deploy" className="trackingSplit">
+        <div>
+          <h2 className="trackingH2">Closed-Loop Deployment</h2>
+          <p className="trackingP">
+            Deployed the learned policy in closed-loop rollouts on unseen target locations and measured success across
+            randomized episodes. Achieved strong performance, with failures driven by distribution shift (policy drifting
+            into states not covered by demonstrations).
+          </p>
+          <p className="trackingP">
+            Implemented a DAgger-style data aggregation workflow to collect corrections on-policy and improve recovery
+            behavior when the agent deviates from the demonstration manifold.
+          </p>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+
 function TrackingProject({ p, base }) {
   const thumbImg = "media/slam-thumb.jpg";
   const pyqtImg = "media/pyqt.png";
@@ -423,30 +557,7 @@ function TrackingProject({ p, base }) {
         </figure>
       </section>
 
-      {/* 9) TECHNICAL HIGHLIGHTS */}
-      <section className="trackingFull">
-        <h2 className="trackingH2">Technical Highlights</h2>
-        <ul className="trackingList">
-          <li>
-            <strong>Detection:</strong> YOLOv4 with TensorFlow SavedModel, class filtering
-          </li>
-          <li>
-            <strong>Depth:</strong> Per-detection depth from aligned RGB-D stream (center-pixel sampling)
-          </li>
-          <li>
-            <strong>Tracking:</strong> SORT-style 2D tracking with Kalman filtering and Hungarian association
-          </li>
-          <li>
-            <strong>Projection:</strong> Bearing + depth to camera-centric 3D coordinates using FOV geometry
-          </li>
-          <li>
-            <strong>Visualization:</strong> ID overlays, smoothed motion arrows (Savitzky-Golay), top-down world view
-          </li>
-          <li>
-            <strong>Data Acquisition:</strong> Multi-threaded Python, PyQt GUI, synchronized multi-sensor logging
-          </li>
-        </ul>
-      </section>
+
     </article>
   );
 }
@@ -546,6 +657,8 @@ export default function Project() {
   if (p.slug === "robotic-wrinkle-flattening") return <WrinkleProject p={p} base={base} />;
   if (p.slug === "multi-object-tracking") return <TrackingProject p={p} base={base} />;
   if (p.slug === "bomi-sewing-machine-control") return <BomiProject p={p} base={base} />;
+  if (p.slug === "behavior-cloning-reaching") return <BehaviorCloningProject p={p} base={base} />;
+
 
   // default template
   return (
@@ -563,21 +676,22 @@ export default function Project() {
           </div>
         ) : null}
       </header>
-
-      {p.hero?.src ? (
-        <section className="heroMedia">
-          {p.hero?.type === "video" ? (
-            <video
-              controls
-              src={`${base}${p.hero.src}`}
-              poster={p.hero.poster ? `${base}${p.hero.poster}` : undefined}
-            />
-          ) : (
-            <img src={`${base}${p.hero?.src}`} alt={p.title ?? "Project"} />
-          )}
-          {p.hero?.caption ? <div className="caption">{p.hero.caption}</div> : null}
-        </section>
-      ) : null}
+{(p.hero?.src || (p.hero?.type === "youtube" && p.hero?.id)) ? (
+  <section className="heroMedia">
+    {p.hero?.type === "video" ? (
+      <video
+        controls
+        src={`${base}${p.hero.src}`}
+        poster={p.hero.poster ? `${base}${p.hero.poster}` : undefined}
+      />
+    ) : p.hero?.type === "youtube" && p.hero?.id ? (
+      <YouTubeHero id={p.hero.id} autoplay={true} />
+    ) : (
+      <img src={`${base}${p.hero?.src}`} alt={p.title ?? "Project"} />
+    )}
+    {p.hero?.caption ? <div className="caption">{p.hero.caption}</div> : null}
+  </section>
+) : null}
 
       {(p.bullets?.length || p.highlights?.length || p.links?.length) ? (
         <section className="twoCol">

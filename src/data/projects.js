@@ -4,7 +4,7 @@ export const projects = [
  {
   slug: "robotic-wrinkle-flattening",
   title: "Human-Inspired Robotic Cloth Manipulation (HI-ARCF)",
-  summary: "Modeled human strategies from participant data and deployed a vision-guided manipulation pipeline for wrinkle flattening.",
+  summary: "Modeled human strategies from participant data and deployed a vision-guided manipulation system for wrinkle flattening.",
   tags: ["Robotics", "Manipulation", "Computer Vision", "Learning from Humans"],
   hero: {
     type: "video",
@@ -19,6 +19,65 @@ export const projects = [
     { id: "closed-loop", title: "Closed-loop Execution", subtitle: "Implement cloth flattening on FANUC robot" },
   ],
 },
+ {
+  slug: "behavior-cloning-reaching",
+  title: "Behavior Cloning for Robotic Reaching",
+  summary:
+    "BImplemented imitation learning for 3D target reaching on a KUKA IIWA using teleoperated demonstrations in PyBullet.",
+  tags: ["Robotics", "Imitation Learning", "PyBullet", "PyTorch"],
+
+
+  image: "media/bc-thumb.png",
+
+
+  hero: {
+    type: "youtube",
+    id: "l81pbpRQJIs",
+    caption: "Closed-loop deployment: learned policy reaching novel 3D targets in simulation.",
+  },
+
+  // drives the 4-box pipeline component (same style as other projects)
+  approachSteps: [
+    {
+      id: "sim",
+      title: "Simulation",
+      subtitle: "PyBullet environment + randomized target reaching",
+    },
+    {
+      id: "teleop",
+      title: "Teleoperation",
+      subtitle: "Keyboard Cartesian control using Jacobian pseudoinverse",
+    },
+    {
+      id: "train",
+      title: "Training",
+      subtitle: "Behavior cloning (supervised learning on state–action pairs)",
+    },
+    {
+      id: "deploy",
+      title: "Deployment",
+      subtitle: "Closed-loop rollout and evaluation on novel targets",
+    },
+  ],
+
+  bullets: [
+    "Created a PyBullet reaching task with compact observations and joint-velocity actions.",
+    "Built Cartesian keyboard teleop with Jacobian pseudoinverse and visual feedback for efficient demonstrations.",
+    "Trained an MLP policy via behavior cloning and addressed distribution shift with a DAgger-style loop.",
+  ],
+
+  highlights: [
+    { label: "Robot", value: "KUKA IIWA (7-DOF) in simulation" },
+    { label: "Data", value: "30 demos (~1,200 state–action pairs)" },
+    { label: "Result", value: "85% success rate on novel targets" },
+  ],
+
+  links: [
+    { label: "GitHub", href: "https://github.com/ashrut2000/behavior-cloning" },
+    // { label: "Writeup", href: "..." },
+  ],
+},
+
 
 {
     slug: "bomi-sewing-machine-control",
@@ -75,4 +134,5 @@ export const projects = [
       { type: "image", src: "media/slam-gui.png", caption: "PyQt GUI (recommended)." },
     ],
   },
+
 ];
