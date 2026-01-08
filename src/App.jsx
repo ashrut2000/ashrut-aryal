@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import Project from "./pages/Project.jsx";
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
+      <Analytics />
     </>
   );
 }
