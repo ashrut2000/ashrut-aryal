@@ -135,41 +135,95 @@ export default function Home() {
         </div>
 
         <div className="grid">
-          {projects.map((p) => (
-            <Link key={p.slug} to={`/projects/${p.slug}`} className="card">
-              <div className="thumb">
-  {p.hero?.type === "video" ? (
-    <video
-      src={`${base}${p.hero.src}`}
-      poster={p.hero.poster ? `${base}${p.hero.poster}` : undefined}
-      muted
-      playsInline
-      loop
-      autoPlay
-    />
-  ) : p.hero?.type === "youtube" && p.hero?.id ? (
-    // Use your local thumbnail for the card
-    <img src={`${base}${p.image}`} alt={p.title} />
-  ) : (
-    <img src={`${base}${p.hero?.src}`} alt={p.title} />
-  )}
-</div>
+  {projects.map((p) => (
+    <Link
+      key={p.slug}
+      to={`/projects/${p.slug}`}
+      className="card"
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+      }}
+      aria-label={`${p.title} — see more`}
+    >
+      <div className="thumb">
+        {p.hero?.type === "video" ? (
+          <video
+            src={`${base}${p.hero.src}`}
+            poster={p.hero.poster ? `${base}${p.hero.poster}` : undefined}
+            muted
+            playsInline
+            loop
+            autoPlay
+          />
+        ) : p.hero?.type === "youtube" && p.hero?.id ? (
+          <img src={`${base}${p.image}`} alt={p.title} />
+        ) : (
+          <img src={`${base}${p.hero?.src}`} alt={p.title} />
+        )}
+      </div>
 
+      <div
+        className="cardBody"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          height: "100%",
+        }}
+      >
+        <div>
+          <div className="cardTitle">{p.title}</div>
+          <div className="cardSummary">{p.summary}</div>
+        </div>
 
-              <div className="cardBody">
-                <div className="cardTitle">{p.title}</div>
-                <div className="cardSummary">{p.summary}</div>
-                <div className="tagRow">
-                  {p.tags.slice(0, 4).map((t) => (
-                    <span className="tag" key={t}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Link>
+        <div className="tagRow">
+          {p.tags.slice(0, 4).map((t) => (
+            <span className="tag" key={t}>
+              {t}
+            </span>
           ))}
         </div>
+
+        {/* See more label */}
+        <div
+          style={{
+            marginTop: "auto",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingTop: "10px",
+            borderTop: "1px solid rgba(255,255,255,0.10)",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "13px",
+              color: "rgba(233,236,241,0.85)",
+              letterSpacing: "0.2px",
+            }}
+          >
+            See more
+          </span>
+
+          <span
+            aria-hidden="true"
+            style={{
+              fontSize: "18px",
+              lineHeight: 1,
+              color: "rgba(122,162,255,0.95)",
+              transform: "translateY(-1px)",
+            }}
+          >
+            →
+          </span>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
+
       </section>
 
       {/* PUBLICATIONS */}
